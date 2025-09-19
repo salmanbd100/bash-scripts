@@ -16,18 +16,58 @@ This directory contains scripts that cover fundamental bash concepts.
 *   **`case_statements.sh`**: Demonstrates the use of `case` statements.
 *   **`run_all.sh`**: A script that runs other scripts.
 
+### `input/`
+
+*   **`script.sh`**: Interactive login script that prompts for email and password.
+
+### `logs/`
+
+*   **`analyse-logs.sh`**: Log analysis script that searches for error patterns in log files and generates a report.
+
 ## How to Run
 
-To run any of the scripts, navigate to the `basic` directory and use the `bash` command:
+### Basic Scripts
+
+To run any of the basic scripts, navigate to the `basic` directory and use the `bash` command:
 
 ```bash
 cd basic
 bash <script_name>.sh
 ```
 
-For example, to run the `hello.sh` script:
-
+For example:
 ```bash
 cd basic
 bash hello.sh
+bash arguments.sh arg1 arg2 arg3
+```
+
+### Input Scripts
+
+To run the interactive login script:
+
+```bash
+cd input
+bash script.sh
+```
+
+### Log Analysis Script
+
+To run the log analysis script:
+
+```bash
+cd logs
+bash analyse-logs.sh
+```
+
+Note: Make sure you have log files (*.log) in the logs directory before running the analysis script.
+
+## General Usage
+
+You can also run scripts from the root directory by specifying the full path:
+
+```bash
+bash basic/hello.sh
+bash input/script.sh
+bash logs/analyse-logs.sh
 ```

@@ -71,3 +71,101 @@ bash basic/hello.sh
 bash input/script.sh
 bash logs/analyse-logs.sh
 ```
+
+---
+
+## Formatting Code in VS Code
+
+This repo uses [Beautysh](https://github.com/lovesegfault/beautysh) to format shell scripts.
+
+### Setup
+
+1. Install the [Beautysh](https://marketplace.visualstudio.com/items?itemName=ryanluker.vscode-beautysh) VS Code extension, or install the formatter globally:
+   ```bash
+   pip install beautysh
+   ```
+
+2. Add the following to your VS Code `settings.json` (open with `Cmd+Shift+P` → "Open User Settings (JSON)"):
+   ```json
+   {
+     "[shellscript]": {
+       "editor.defaultFormatter": "ryanluker.vscode-beautysh",
+       "editor.formatOnSave": true
+     }
+   }
+   ```
+
+3. To format a file manually: `Shift+Alt+F` (or `Shift+Option+F` on Mac).
+
+4. To format all scripts at once from the terminal:
+   ```bash
+   beautysh **/*.sh
+   ```
+
+> The pre-commit hook in `.pre-commit-config.yaml` also runs Beautysh automatically before each commit.
+
+---
+
+## Standards for Writing New Scripts
+
+Follow these conventions when adding a new script to this repo.
+
+### File naming
+
+- Use lowercase with hyphens: `my-script.sh`, `analyse-logs.sh`
+- Be descriptive — the filename should convey what the script does
+
+### Header
+
+Every script must start with:
+
+```bash
+#!/bin/bash
+```
+
+### Variables
+
+- Use `UPPER_SNAKE_CASE` for constants and environment-level variables
+- Use `lower_snake_case` for local/loop variables
+- Always quote variables to prevent word splitting: `"$VAR"`, `"$1"`
+
+```bash
+LOG_DIR="/path/to/logs"
+for file in "$LOG_DIR"/*.log; do
+    echo "Processing $file"
+done
+```
+
+### Functions
+
+- Name functions with `lower_snake_case`
+- Keep functions short and single-purpose
+- Declare local variables with `local`
+
+```bash
+print_greeting() {
+    local name="$1"
+    echo "Hello, $name"
+}
+```
+
+### Error handling
+
+- Exit on errors and unset variables at the top of every script:
+
+```bash
+set -euo pipefail
+```
+
+- Use `echo "Error: ..." >&2; exit 1` to surface meaningful failures
+
+### Directory placement
+
+| Type of script | Directory |
+|---|---|
+| Core concept demos | `basic/` |
+| Interactive / user input | `input/` |
+| Log processing | `logs/` |
+| System maintenance | `my-script/` |
+
+Create a new directory only if the script doesn't fit any existing category.

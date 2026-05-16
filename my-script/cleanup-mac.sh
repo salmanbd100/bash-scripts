@@ -102,11 +102,11 @@ rm -rf ~/.Trash/*
 echo "🗑 Removing old node_modules folders..."
 
 find ~/Documents \
-  -type d \
-  -name "node_modules" \
-  -mtime +14 \
-  -prune \
-  -exec rm -rf {} + 2>/dev/null
+    -type d \
+    -name "node_modules" \
+    -mtime +14 \
+    -prune \
+    -exec rm -rf {} + 2>/dev/null
 
 # -----------------------------
 # Cleanup .next build cache
@@ -114,11 +114,11 @@ find ~/Documents \
 echo "⚡ Removing old .next caches..."
 
 find ~/Documents \
-  -type d \
-  -name ".next" \
-  -mtime +14 \
-  -prune \
-  -exec rm -rf {} + 2>/dev/null
+    -type d \
+    -name ".next" \
+    -mtime +14 \
+    -prune \
+    -exec rm -rf {} + 2>/dev/null
 
 # -----------------------------
 # Cleanup dist/build folders
@@ -126,11 +126,11 @@ find ~/Documents \
 echo "🏗 Removing old build folders..."
 
 find ~/Documents \
-  \( -name "dist" -o -name "build" \) \
-  -type d \
-  -mtime +14 \
-  -prune \
-  -exec rm -rf {} + 2>/dev/null
+    \( -name "dist" -o -name "build" \) \
+    -type d \
+    -mtime +14 \
+    -prune \
+    -exec rm -rf {} + 2>/dev/null
 
 echo ""
 echo "✅ Cleanup complete!"

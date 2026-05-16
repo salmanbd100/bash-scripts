@@ -4,16 +4,16 @@
 fruit="apple"
 
 case $fruit in
- "apple")
+"apple")
     echo "This is a red fruit."
     ;;
- "banana")
+"banana")
     echo "This is a yellow fruit."
     ;;
- "orange")
+"orange")
     echo "This is an orange fruit."
     ;;
- *)
+*)
     echo "Unknown fruit."
     ;;
 esac

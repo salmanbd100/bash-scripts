@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git commit*)",
+            "command": "bash -c 'STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep \"\\.sh$\"); if [ -n \"$STAGED\" ]; then for f in $STAGED; do shfmt -i 4 -d \"$f\" || exit 1; shellcheck \"$f\" || exit 1; done; fi'",
+            "statusMessage": "Checking staged shell scripts with shfmt + shellcheck...",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
